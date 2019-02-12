@@ -58,7 +58,7 @@ imax = np.argmax(grad_chi)
 
 chi[:imax+1]+=np.pi
 
-mychi = np.degrees(chi)
+chi_deg = np.degrees(chi)
 
 
 #--------------------------------------------------------------------
@@ -85,7 +85,7 @@ ax1.set_xlabel('$\lambda^2 [m^2]$')
 
 ax1.set_ylabel('$\chi [deg]$')
 
-l1 =ax1.plot(lam_squared, mychi, 'k-')
+l1 =ax1.plot(lam_squared, chi_deg, 'k-')
 
 ax1.tick_params(axis='y')
 

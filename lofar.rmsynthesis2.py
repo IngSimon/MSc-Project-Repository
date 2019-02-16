@@ -195,7 +195,7 @@ np.savetxt("./data/stokesu.txt",stokesU)
 #------------------------------------------------------------------------
 #combine the three parameters into one file
 
-with open("./data/params.txt", 'w') as file4:
+with open("./data/all_params.txt", 'w') as file4:
 
   with open("./data/frequencies.txt", 'r') as file1:
 

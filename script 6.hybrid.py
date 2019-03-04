@@ -29,24 +29,35 @@ import rm_tools as R
 
 #----------------------------------------------------------------
 
-def trim_data(num1, filename2, num2= 1024, filename1='./data/all_params.txt'):
+def trim_data(percent, name2, filename2, filename3, num2= 1024, filename1="./data/all_params.txt"):
 
+       num1 = int(round((num2*percent/100), 0)) 
 
-        with open(filename1) as file:
+       with open(filename1) as file:
 
            lines = file.read().splitlines()
 
-        random_lines = random.sample(lines, num1) 
+       random_lines = random.sample(lines, num1) 
 
-        with open(filename2, "w") as output_file:  
+       with open(filename2, "w") as output_file1:  
 
-           output_file.writelines(line + '\n' for line in lines if line not in random_lines)
+            output_file1.writelines(line + '\n' for line in lines if line not in random_lines)
 
-           output_file.close()  
+            output_file1.close()  
 
-        num_of_lines = num2 - num1
+       with open(filename3, "w") as output_file2:  
 
-        return num_of_lines
+            output_file2.writelines(line + '\n' for line in lines if line in random_lines)
+
+            output_file2.close()
+
+
+       num_of_lines = num2 - num1
+
+       remainder = 100 - percent
+
+       return remainder
+
 
 
 # -----------------------------------------------------------------
@@ -60,13 +71,15 @@ def get_1d_data(input_dir):
         files = os.listdir(input_dir)
 
 
-        params_file = './' + name2 + '/' +name2 + '.txt'
+        params_file = './' + name2 + '/' + "training" + '.txt'
 
         nu = np.loadtxt(params_file, usecols=(0,))
 
-        stokesQ = np.loadtxt(params_file, usecols=(1,))
+        lam_squared = np.loadtxt(params_file, usecols=(1,))
 
-        stokesU = np.loadtxt(params_file, usecols=(2,)) 
+        stokesQ = np.loadtxt(params_file, usecols=(2,))
+
+        stokesU = np.loadtxt(params_file, usecols=(3,)) 
         
 
         los = stokesQ + 1j*stokesU
@@ -132,40 +145,44 @@ def calc_maxscale(nu,dnu):
 #Retrive data from the file
 
 
-num1 = input('Please enter the number of lines to remove: ')
+percent = input('Please enter the percentage of entries to remove: ')
 
-name2 = input('Please enter the name of the output file (in quotes): ')
+name2 = input('Please enter the name of the directory for the output files: ')
 
 os.makedirs(name2)
 
-output_dir = './' + name2 + '/'
+input_dir = './' + name2 + '/'
 
-filename2 = './' + name2 + '/' +name2 + '.txt'
+filename2 = './' + name2 + '/' + "training" + '.txt'
 
-print 'A file {} with {} rows has been successfully generated'.format(filename2, trim_data(num1, filename2, num2= 1024, filename1='./data/all_params.txt'))
+filename3 = './' + name2 + '/' + "removed" + '.txt'
+
+print 'A file {} with {} percent of the original data has been successfully generated'.format(filename2, trim_data(percent, name2, filename2, filename3, num2= 1024, filename1="./data/all_params.txt"))
 
 nu = np.loadtxt( filename2, usecols=(0,))
 
-stokesQ = np.loadtxt( filename2, usecols=(1,))
+lam_squared = np.loadtxt( filename2, usecols=(1,))
 
-stokesU = np.loadtxt(filename2, usecols=(2,))
+stokesQ = np.loadtxt( filename2, usecols=(2,))
+
+stokesU = np.loadtxt(filename2, usecols=(3,))
 
  
 #--------------------------------------------------------------------------
 
 pl.subplot(111)
 
-pl.plot(nu,stokesQ)
+pl.plot(lam_squared,stokesQ)
 
-pl.plot(nu,stokesU)
+pl.plot(lam_squared,stokesU)
 
-pl.xlabel('frequency (0.58GHz to 2.5GHz)')  
+pl.xlabel('$\lambda^2 [m^2]$')  
 
-pl.ylabel('Q and U ')
+pl.ylabel('stokes parameters ')
 
 pl.legend(['stokesQ','stokesU'])
 
-pl.savefig(output_dir +'plot1.png')
+pl.savefig(input_dir +'plot1.png')
 
 pl.show()
 
@@ -178,9 +195,9 @@ phi = np.linspace(-1000,1000,4000)
 
 # get the input data:
 
-inputdir = "./data"
+#inputdir = "./data"
 
-nu,los = get_1d_data(inputdir)
+nu,los = get_1d_data(input_dir)
 
 dnu = nu[1]-nu[0]
 
@@ -220,7 +237,7 @@ pl.xlabel('RMSF ($\phi$)')
 
 pl.ylabel('RMSF')
 
-pl.savefig(output_dir + 'plot2.png')
+pl.savefig(input_dir + 'plot2.png')
 
 pl.show()
 
@@ -244,6 +261,6 @@ pl.ylabel('F ($\phi$)')
 
 pl.axis([-1000,1000,-0.1,1.5])
 
-pl.savefig(output_dir +'plot3.png')
+pl.savefig(input_dir +'plot3.png')
 
 pl.show()

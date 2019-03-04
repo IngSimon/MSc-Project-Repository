@@ -155,7 +155,7 @@ pl.plot(lam_squared,stokesU)
 
 pl.xlabel('$\lambda^2 [m^2]$')  
 
-pl.ylabel('Q and U ')
+pl.ylabel('Stokes parameters ')
 
 pl.legend(['stokesQ','stokesU'])
 

@@ -4,7 +4,6 @@ This script creates a txt file with a specified percentage.
 
 The name of directory: provided by user
 
-The default name of the input file: all_params.txt
 
 
 """

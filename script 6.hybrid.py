@@ -12,6 +12,8 @@ The new generated file and the output images are stored in the new directory
 
 Some rows of data have been deliberately removed to mimic RFI flagging
 
+Since each entry is picked individually, the actual percentage is guaranteed
+
 
 """
 

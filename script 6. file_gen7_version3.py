@@ -147,7 +147,6 @@ file3 = "./" + name2 +"/removed.txt"
 print ("A file {} has been successfully created".format(create_removed(file2, file3, file1="./data/all_params.txt")))
 
 
-#https://stackoverflow.com/questions/14924721/how-to-choose-a-random-line-from-a-text-file
 
 
 

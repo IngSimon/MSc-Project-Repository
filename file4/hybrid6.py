@@ -262,9 +262,9 @@ stokesU = np.loadtxt(filename2, usecols=(3,))
 
 pl.subplot(111)
 
-pl.plot(lam_squared,stokesQ)
+pl.plot(lam_squared,stokesQ, linestyle='none', marker='.')
 
-pl.plot(lam_squared,stokesU)
+pl.plot(lam_squared,stokesU, linestyle='none', marker='.')
 
 pl.xlabel('$\lambda^2 [m^2]$')  
 
@@ -272,7 +272,7 @@ pl.ylabel('stokes parameters ')
 
 pl.legend(['stokesQ','stokesU'])
 
-pl.savefig(input_dir +'plot1.png')
+pl.savefig(input_dir +'1a.png')
 
 pl.show()
 
@@ -327,7 +327,7 @@ pl.xlabel('RMSF ($\phi$)')
 
 pl.ylabel('RMSF')
 
-pl.savefig(input_dir + 'plot2.png')
+pl.savefig(input_dir + '1b.png')
 
 pl.show()
 
@@ -351,10 +351,9 @@ pl.ylabel('F ($\phi$)')
 
 pl.axis([-1000,1000,-0.1,1.5])
 
-pl.savefig(input_dir +'plot3.png')
+pl.savefig(input_dir +'1c.png')
 
 pl.show()
-
 
 
 

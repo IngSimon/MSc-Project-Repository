@@ -1,6 +1,6 @@
-###Faraday depth spectra for a Faraday thick source
+###Script for performaing RM synthesis after data predicting missing data
 
-###MeerKAT
+###
 
 
 import os,sys
@@ -114,60 +114,9 @@ def calc_maxscale(nu,dnu):
 
 # -----------------------------------------------------------------
 
-# -----------------------------------------------------------------
+name_dir = input('Please enter the name of the directory containing data (use quotes): ') #
 
-"""
-
-const_c = 3e8
-
-
-
-p0 = 1.0
-
-alpha = 0.7
-
-nu0 = 1.4e9
-
-rm = 50.
-
-phi0 = 0.
-
-
-
-
-#nu = np.linspace(120e6,180e6,1024) # LOFAR frequency coverage
-
-nu = np.linspace(580e6,250e7,1024) # MeerKAT frequency coverage
-
-#nu = np.linspace(0.3e9,2.5e9,1024) # frequency coverage
-
-
-
-lam = const_c/nu
-
-lam_squared = lam**2  ###added
-
-noise = np.random.normal(0, 0.001, nu.shape)
-
-dataQ = np.sin(2*2*lam_squared)/(2*2*lam_squared) + 0.25*np.cos(2*10*lam_squared)
-
-#dataQ = np.sin(2*2*lam_squared)/(2*2*lam_squared) + 0.25*np.cos(2*10*lam_squared)
-
-stokesQ = dataQ + noise
-
-dataU = 0.25*np.sin(2*10*lam_squared)
-
-#dataU = 0.25*np.sin(2*10*lam_squared)
-
-stokesU= dataU + noise
-
-#chi_init = np.degrees(0.5*np.arctan2(stokesU,stokesQ))
-
-#chi =chi_init + phi0
-
-"""
-
-input_dir = "./complete/"
+input_dir = './' + name_dir + "/complete/" #
 
 nu,lam2, stokesQ, stokesU, los = get_1d_data(input_dir)
 
@@ -175,9 +124,9 @@ nu,lam2, stokesQ, stokesU, los = get_1d_data(input_dir)
 
 pl.subplot(111)
 
-pl.plot(lam2,stokesQ)
+pl.plot(lam2,stokesQ,linestyle='none', marker='.')
 
-pl.plot(lam2,stokesU)
+pl.plot(lam2,stokesU, linestyle='none', marker='.')
 
 pl.xlabel('Wavelengths squared')   # string must be enclosed with quotes '  '
 
@@ -187,7 +136,7 @@ pl.title('Stokes parameters against Frequency')
 
 pl.legend(['stokesQ','stokesU'])
 
-pl.savefig('plot4.png')
+pl.savefig('./' + name_dir + '/' + '3a.png')
 
 pl.show()
 
@@ -220,13 +169,13 @@ res = calc_phi_res(nu)
 
 maxscale = calc_maxscale(nu,dnu)
 
-print "\n"
+print ("\n")
 
-print "Max f.d. resolution: " +str(round(res)) + " rad/m^2"
+print ("Max f.d. resolution: " +str(round(res)) + " rad/m^2")
 
-print "Max f.d. scale " +str(round(maxscale)) + " rad/m^2"
+print ("Max f.d. scale " +str(round(maxscale)) + " rad/m^2")
 
-print "\n"
+print ("\n")
 
 
 
@@ -241,7 +190,7 @@ pl.axis([-1000,1000,-0.1,1.1])
 pl.xlabel('RMSF ($\phi$)')   # string must be enclosed with quotes '  '
 pl.ylabel('RMSF')
 
-pl.savefig('plot5.png')
+pl.savefig('./' + name_dir + '/' + '3b.png')
 pl.show()
 
 
@@ -264,7 +213,7 @@ pl.ylabel('F ($\phi$)')
 
 pl.axis([-1000,1000,-0.1,1.5])
 
-pl.savefig('plot6.png')
+pl.savefig('./' + name_dir + '/' + '3c.png')
 
 pl.show()
 

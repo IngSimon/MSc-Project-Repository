@@ -282,7 +282,7 @@ pl.axis([0.,0.3,-1.,1.5])
 
 #pl.legend(['stokesQ','stokesU'])
 
-pl.savefig(input_dir_2 + '/' +'Figure_a.png')
+pl.savefig(input_dir_2 + '/' +'2a.png')
 
 pl.show()
 
@@ -399,7 +399,7 @@ pl.axis([0., 0.3,-0.75,1.5])
 
 pl.grid()
 
-pl.savefig(input_dir_2 + '/' +'Figure_b.png')
+pl.savefig(input_dir_2 + '/' +'2b.png')
 
 pl.show()
 
@@ -440,7 +440,7 @@ pl.axis([0., 0.3,-0.75,1.5])
 
 pl.grid()
 
-pl.savefig(input_dir_2 + '/' +'Figure_c.png')
+pl.savefig(input_dir_2 + '/' +'2c.png')
 
 pl.show()
 
@@ -479,7 +479,7 @@ pl.axis([0., 0.3,-0.75,1.5])
 
 pl.grid()
 
-pl.savefig(input_dir_2 + '/' +'Figure_d.png')
+pl.savefig(input_dir_2 + '/' +'2d.png')
 
 pl.show()
 

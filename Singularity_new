@@ -35,6 +35,8 @@ MirrorURL: http://ftp.us.debian.org/debian/
 
     pip install numpy
 
+    python -m pip install -U pip
+    
     python -m pip install -U matplotlib
 
     pip install emcee

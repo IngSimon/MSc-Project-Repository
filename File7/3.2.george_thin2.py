@@ -6,7 +6,7 @@
 
 ###optimize parameters and do second prediction
 
-###Extending the range to lower frequencies
+###Extending the range to lower wavelengths
 
 ###Adapted from mlscript12.py
 
